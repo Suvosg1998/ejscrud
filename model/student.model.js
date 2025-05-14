@@ -12,10 +12,14 @@ const studentSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
     },
     phone: {
         type: Number,
+        required: true
+    },
+    teacher:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher',
         required: true
     },
     isDeleted:{

@@ -33,23 +33,16 @@
           <th scope="col">Age</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% student.map((student, index) => { %>
+        <% teacher.map((teacher, index) => { %>
           <tr>
             <th scope="row"><%= index + 1 %></th>
-            <td><%= student.name %></td>
-            <td><%= student.age %></td>
-            <td><%= student.email %></td>
-            <td><%= student.phone %></td>
-            <td>
-              <a href="/student/update/<%= student._id %>" class="btn btn-warning">Edit</a>
-              <form action="/student/delete/<%= student._id %>" class="d-inline">
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-            </td>
+            <td><%= teacher.name %></td>
+            <td><%= teacher.age %></td>
+            <td><%= teacher.email %></td>
+            <td><%= teacher.phone %></td>
           </tr>
         <% }) %>
       </tbody>
