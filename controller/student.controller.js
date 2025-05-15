@@ -1,12 +1,18 @@
 const studentRepository = require('../Repositories/user.repo');
+const studentValidator = require('../validator/student.validator');
 
 class studentController{
 async studentForm(req, res){
         res.render('student/studentForm');
     }
     async createStudent(req, res){
-
-        const { name, age, email, phone, teacher } = req.body;
+        const { error, value } = studentValidator.validate(req.body, { abortEarly: false });
+        if (error) {
+            const messages = error.details.map(detail => detail.message);
+            req.flash("error", messages);
+            return res.redirect('/student/form');
+        }
+        const { name, age, email, phone, teacher } = value;
         const student = await studentRepository.create({
             name,
             age,
@@ -34,7 +40,13 @@ async studentForm(req, res){
     }
     async updateStudent(req, res){
         const { id } = req.params;
-        const { name, age, email, phone } = req.body;
+        const { error, value } = studentValidator.validate(req.body, { abortEarly: false });
+        if (error) {
+            const messages = error.details.map(detail => detail.message);
+            req.flash("error", messages);
+            return res.redirect('/student');
+        }
+        const { name, age, email, phone } = value;
         await studentRepository.update(id, { name, age, email, phone });
         req.flash("success", "Student updated successfully");
         res.redirect('/student');
