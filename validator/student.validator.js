@@ -1,7 +1,4 @@
-// validators/user.validator.js
 const Joi = require('joi');
-
-//const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 
 const studentSchema = Joi.object({
     email: Joi.string()
@@ -22,22 +19,21 @@ const studentSchema = Joi.object({
             'number.min': 'Age must be a positive number.',
             'any.required': 'Age is required.'
         }),
-    // password: Joi.string()
-    //     .pattern(passwordRegex)
-    //     .message('Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.')
-    //     .required()
-    //     .messages({
-    //         'any.required': 'Password is required.'
-    //     }),
     phone: Joi.string().pattern(/^[0-9]{10}$/).required()
         .messages({
             'string.pattern.base': 'Phone number must be 10 digits long.',
             'any.required': 'Phone number is required.'
         }),
-    // teacher: Joi.string().required()
-    //     .messages({
-    //         'any.required': 'Select a teacher.'
-    //     }),
+    teacher: Joi.string().required()
+        .messages({
+            'any.required': 'Select a teacher.'
+        }),
+    file: Joi.string().required().allow('csv', 'xls', 'xlsx')
+        .messages({
+            'string.base': 'File must be a string.',
+            'string.empty': 'File cannot be empty.',
+            'any.required': 'File is required.'
+        })
 });
 
 module.exports = studentSchema;

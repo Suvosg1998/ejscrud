@@ -11,7 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <form action="/student" method="POST">
+    <form action="/student" method="POST" enctype="multipart/form-data">
         <container class="container px-5 mx-5">
             <br>
     <% if(success_message.length > 0) {%>
@@ -47,6 +47,10 @@
     <div class="mb-3">
         <label for="teacher" class="form-label">Teacher</label>
         <input type="text" class="form-control" id="teacher" name="teacher">
+    </div>
+    <div class="mb-3">
+        <label for="file" class="form-label">File</label>
+        <input type="file" class="form-control" id="file" name="file">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </container>

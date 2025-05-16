@@ -13,12 +13,15 @@ async studentForm(req, res){
             return res.redirect('/student/form');
         }
         const { name, age, email, phone, teacher } = value;
+        const { file } = req.file?req.file.filename:'';
+        console.log(file, 'file');
         const student = await studentRepository.create({
             name,
             age,
             email,
             phone,
-            teacher
+            teacher,
+            file: file
         });
         if(student){
             req.flash("success", "Student created successfully");

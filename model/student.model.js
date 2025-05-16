@@ -22,6 +22,10 @@ const studentSchema = new mongoose.Schema({
         ref: 'Teacher',
         required: true
     },
+    file:{
+        type: String,
+        required: true
+    },
     isDeleted:{
         type: Boolean,
         default: false
